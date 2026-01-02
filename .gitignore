@@ -1,0 +1,47 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Environment
+.env
+.env.local
+.env.production
+
+# Build output
+dist/
+build/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+*.egg-info/
+
+# AI model artifacts
+ai-service/models/*.pt
+ai-service/models/*.onnx
+ai-service/models/*.weights
+
+# Coverage
+coverage/
+.nyc_output/
+
+# Misc
+*.tmp
+*.bak
