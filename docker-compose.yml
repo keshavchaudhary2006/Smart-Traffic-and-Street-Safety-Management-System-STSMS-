@@ -1,0 +1,103 @@
+version: '3.8'
+
+services:
+  # ──────────────────────────────────────────────
+  # 1. MongoDB Database Container
+  # ──────────────────────────────────────────────
+  mongodb:
+    image: mongo:7.0
+    container_name: stsms-mongodb
+    restart: always
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - stsms-network
+    healthcheck:
+      test: ['CMD', 'mongosh', '--eval', 'db.adminCommand("ping")']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ──────────────────────────────────────────────
+  # 2. Python YOLO Computer Vision Service
+  # ──────────────────────────────────────────────
+  ai-service:
+    build:
+      context: ./ai-service
+      dockerfile: Dockerfile
+    container_name: stsms-ai-service
+    restart: always
+    ports:
+      - '8000:8000'
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8000
+      - YOLO_MODEL=yolov8n.pt
+      - CONF_THRESHOLD=0.30
+    volumes:
+      - ai_outputs:/app/outputs
+      - uploads_data:/app/uploads
+    networks:
+      - stsms-network
+
+  # ──────────────────────────────────────────────
+  # 3. Node.js Express API Backend
+  # ──────────────────────────────────────────────
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: stsms-backend
+    restart: always
+    ports:
+      - '5000:5000'
+    environment:
+      - NODE_ENV=production
+      - PORT=5000
+      - MONGO_URI=mongodb://mongodb:27017/stsms
+      - JWT_SECRET=stsms_production_secure_jwt_secret_key_2026
+      - JWT_EXPIRES_IN=7d
+      - CLIENT_URL=http://localhost:5173
+      - AI_SERVICE_URL=http://ai-service:8000
+    depends_on:
+      mongodb:
+        condition: service_healthy
+      ai-service:
+        condition: service_started
+    volumes:
+      - uploads_data:/app/uploads
+    networks:
+      - stsms-network
+
+  # ──────────────────────────────────────────────
+  # 4. React Frontend (Nginx Reverse Proxy)
+  # ──────────────────────────────────────────────
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: stsms-frontend
+    restart: always
+    ports:
+      - '5173:80'
+    depends_on:
+      - backend
+    networks:
+      - stsms-network
+
+# ──────────────────────────────────────────────
+# Storage Volumes & Custom Network
+# ──────────────────────────────────────────────
+volumes:
+  mongo_data:
+    driver: local
+  uploads_data:
+    driver: local
+  ai_outputs:
+    driver: local
+
+networks:
+  stsms-network:
+    driver: bridge
