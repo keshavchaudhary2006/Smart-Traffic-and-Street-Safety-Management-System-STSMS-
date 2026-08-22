@@ -1,0 +1,14 @@
+{
+  "benchmark": "Traffic Intersection Delay & Emergency Preemption",
+  "baseline_avg_wait_seconds": 186.99,
+  "stsms_dynamic_avg_wait_seconds": 82.9,
+  "traffic_delay_reduction_percent": 55.7,
+  "baseline_emergency_wait_seconds": 178.17,
+  "stsms_emergency_wait_seconds": 31.95,
+  "emergency_delay_reduction_percent": 82.1,
+  "baseline_throughput_veh_per_hr": 2953,
+  "stsms_throughput_veh_per_hr": 3264,
+  "throughput_gain_percent": 10.5,
+  "target_delay_achieved": true,
+  "target_emergency_achieved": true
+}

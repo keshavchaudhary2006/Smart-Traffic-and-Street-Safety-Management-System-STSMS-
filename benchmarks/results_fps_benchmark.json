@@ -1,0 +1,11 @@
+{
+  "benchmark": "Video Ingestion & Frame Throughput",
+  "num_cameras": 20,
+  "total_frames": 6000,
+  "elapsed_seconds": 0.146,
+  "aggregate_fps": 41093.1,
+  "per_stream_fps": 2054.7,
+  "avg_latency_ms": 0.248,
+  "p95_latency_ms": 0.385,
+  "target_achieved": true
+}

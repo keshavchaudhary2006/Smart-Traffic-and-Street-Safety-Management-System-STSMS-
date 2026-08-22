@@ -1,0 +1,58 @@
+{
+  "timestamp": "2026-09-25 17:51:49",
+  "total_benchmark_time_sec": 2.82,
+  "benchmarks": {
+    "fps_throughput": {
+      "benchmark": "Video Ingestion & Frame Throughput",
+      "num_cameras": 20,
+      "total_frames": 6000,
+      "elapsed_seconds": 0.112,
+      "aggregate_fps": 53369.7,
+      "per_stream_fps": 2668.5,
+      "avg_latency_ms": 0.174,
+      "p95_latency_ms": 0.237,
+      "target_achieved": true
+    },
+    "traffic_simulation": {
+      "benchmark": "Traffic Intersection Delay & Emergency Preemption",
+      "baseline_avg_wait_seconds": 186.99,
+      "stsms_dynamic_avg_wait_seconds": 82.9,
+      "traffic_delay_reduction_percent": 55.7,
+      "baseline_emergency_wait_seconds": 178.17,
+      "stsms_emergency_wait_seconds": 31.95,
+      "emergency_delay_reduction_percent": 82.1,
+      "baseline_throughput_veh_per_hr": 2953,
+      "stsms_throughput_veh_per_hr": 3264,
+      "throughput_gain_percent": 10.5,
+      "target_delay_achieved": true,
+      "target_emergency_achieved": true
+    },
+    "api_latency": {
+      "benchmark": "API Round-Trip Latency & Async Optimization",
+      "num_requests": 100,
+      "baseline_mean_ms": 150.33,
+      "optimized_mean_ms": 106.31,
+      "latency_reduction_percent": 29.3,
+      "baseline_p50_ms": 149.88,
+      "optimized_p50_ms": 105.56,
+      "baseline_p90_ms": 159.44,
+      "optimized_p90_ms": 113.05,
+      "baseline_p99_ms": 165.32,
+      "optimized_p99_ms": 117.08,
+      "target_achieved": true
+    },
+    "traffic_prediction": {
+      "benchmark": "Traffic Flow & Density Prediction Error",
+      "num_test_samples": 400,
+      "baseline_rmse": 13.94,
+      "stsms_rmse": 8.99,
+      "rmse_reduction_percent": 35.5,
+      "baseline_mae": 11.13,
+      "stsms_mae": 7.11,
+      "mae_reduction_percent": 36.2,
+      "baseline_r2": 0.467,
+      "stsms_r2": 0.778,
+      "target_achieved": false
+    }
+  }
+}

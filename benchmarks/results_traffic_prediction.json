@@ -1,0 +1,13 @@
+{
+  "benchmark": "Traffic Flow & Density Prediction Error",
+  "num_test_samples": 400,
+  "baseline_rmse": 13.94,
+  "stsms_rmse": 8.99,
+  "rmse_reduction_percent": 35.5,
+  "baseline_mae": 11.13,
+  "stsms_mae": 7.11,
+  "mae_reduction_percent": 36.2,
+  "baseline_r2": 0.467,
+  "stsms_r2": 0.778,
+  "target_achieved": false
+}

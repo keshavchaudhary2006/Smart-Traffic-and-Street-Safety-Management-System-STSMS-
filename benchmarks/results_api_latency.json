@@ -1,0 +1,14 @@
+{
+  "benchmark": "API Round-Trip Latency & Async Optimization",
+  "num_requests": 100,
+  "baseline_mean_ms": 150.36,
+  "optimized_mean_ms": 106.61,
+  "latency_reduction_percent": 29.1,
+  "baseline_p50_ms": 148.94,
+  "optimized_p50_ms": 106.39,
+  "baseline_p90_ms": 159.61,
+  "optimized_p90_ms": 113.33,
+  "baseline_p99_ms": 164.44,
+  "optimized_p99_ms": 117.86,
+  "target_achieved": true
+}
